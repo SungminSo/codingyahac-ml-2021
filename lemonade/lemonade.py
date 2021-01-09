@@ -20,7 +20,7 @@ model = tf.keras.models.Model(X, Y)
 model.compile(loss='mse')
 
 # 모델 학습(fit)
-model.fit(independent_var, dependent_var, epochs=10)
+model.fit(independent_var, dependent_var, epochs=10000, verbose=0)      # epochs: 학습 횟수, verbose: 콘솔 출력 여부
 
 # 모델 이용
 print("Predictions: ", model.predict([[15]]))
