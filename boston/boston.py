@@ -9,7 +9,7 @@ print(boston.head())
 
 # boston 독립, 종속 변수 분리
 independent_var = boston[['crim', 'zn', 'indus', 'chas', 'nox', 'rm', 'age', 'dis', 'rad', 'tax', 'ptratio', 'b', 'lstat']]
-dependent_var = boston[['medv']]
+dependent_var = boston[['medv']]    # 집값(중앙값 - 평균이 이상치일 때는 중앙값으로 집단의 대표값을 설정))
 
 print(independent_var.shape, dependent_var.shape)   # (506, 13) (506, 1)
 
