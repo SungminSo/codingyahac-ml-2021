@@ -2,12 +2,14 @@ import tensorflow as tf
 import pandas as pd
 
 # 데이터 준비
-(independent_var, dependent_var), _ = tf.keras.datasets.mnist.load_data()
+(train_X, train_Y), (test_X, test_Y) = tf.keras.datasets.mnist.load_data()
+print(train_X.shape, train_Y.shape)
+print(test_X.shape, test_Y.shape)
 
 # one-hot encoding
-dependent_var = pd.get_dummies(dependent_var)
+one_hot_train_Y = pd.get_dummies(train_Y)
 
-print(independent_var.shape, dependent_var.shape)
+print(train_X.shape, one_hot_train_Y.shape)
 
 # 모델 구조 생성
 X = tf.keras.layers.Input(shape=[28, 28])
@@ -21,11 +23,11 @@ model = tf.keras.models.Model(X, Y)
 model.compile(loss='categorical_crossentropy', metrics='accuracy')
 
 # 모델 학습
-model.fit(independent_var, dependent_var, epochs=10)
+model.fit(train_X, one_hot_train_Y, epochs=10)
 
 # 모델 이용
-pred = model.predict(independent_var[:5])
+pred = model.predict(test_X[:5])
 print(pd.DataFrame(pred).round(2))
 
 print("================================")
-print(dependent_var[:5])
+print(test_Y[:5])
