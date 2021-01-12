@@ -24,4 +24,8 @@ model.compile(loss='categorical_crossentropy', metrics='accuracy')
 model.fit(independent_var, dependent_var, epochs=10)
 
 # 모델 이용
-print("Predicions: ", model.predict(independent_var[:5]))
+pred = model.predict(independent_var[:5])
+print(pd.DataFrame(pred).round(2))
+
+print("================================")
+print(dependent_var[:5])
